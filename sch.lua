@@ -278,7 +278,7 @@ function check_cp_cape()
 	if windower.ffxi.get_mob_by_target('t') then
 		target = windower.ffxi.get_mob_by_target('t')
 		
-		if target.name:match("Apex") or target.name:match("Locus") and target.hpp < 20 then
+		if (target.name:match("Apex") or target.name:match("Locus")) // and target.hpp < 20 then
 			equip({back="Mecisto. Mantle"})
 			disable("back")
 		else

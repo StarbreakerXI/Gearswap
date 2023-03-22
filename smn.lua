@@ -85,7 +85,8 @@ function get_sets()
 		waist="Incarnation Sash",
 		left_ear="Evans Earring",
 		right_ear={ name="Beck. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Pet: Accuracy+11 Pet: Rng. Acc.+11','Pet: Mag. Acc.+11','Damage taken-3%',}},
-		left_ring="Mephitas's Ring",
+		left_ring="Defending Ring",
+		--left_ring="Mephitas's Ring",
 		right_ring="Evoker's Ring",
 		back="Conveyance Cape",
 	}
@@ -95,16 +96,17 @@ function get_sets()
 		sub="Enki Strap",
 		ammo="Ghastly Tathlum +1",
 		head={ name="Vanya Hood", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
-		body="Arbatel Gown +2",
-		hands={ name="Peda. Bracers +1", augments={'Enh. "Tranquility" and "Equanimity"',}},
-		legs="Acad. Pants +2",
+		body="Apo. Dalmatica +1",
+		hands="Asteria Mitts +1",
+		legs="Assid. Pants +1",
 		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}},
 		neck="Nodens Gorget",
-		waist="Hachirin-no-Obi",
+		waist="Lucidity Sash",
 		left_ear="Etiolation Earring",
 		right_ear="Mendi. Earring",
-		left_ring="Mephitas's Ring",
-		right_ring="Metamor. Ring +1",
+		left_ring="Defending Ring",
+		--left_ring="Mephitas's Ring",
+		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back="Fi Follet Cape +1",
 	}
 	
@@ -122,7 +124,8 @@ function get_sets()
 		waist="Lucidity Sash",
 		left_ear="Evans Earring",
 		right_ear={ name="Beck. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Pet: Accuracy+11 Pet: Rng. Acc.+11','Pet: Mag. Acc.+11','Damage taken-3%',}},
-		left_ring="Mephitas's Ring",
+		left_ring="Defending Ring",
+		--left_ring="Mephitas's Ring",
 		right_ring="Evoker's Ring",
 		back="Conveyance Cape",
 	}
@@ -151,6 +154,7 @@ function precast(spell)
         return
     end
 
+	check_cp_cape()
 	if spell.name:match('Cure') or spell.name:match('Cura') then
 		--equip(sets.precast.Cure)
 	elseif spell.action_type == 'Magic' then
@@ -198,6 +202,7 @@ end
 
 function idle()
 	equip(sets.aftercast.pet)
+	check_cp_cape()
 end
  
 function status_change(new,old)
@@ -229,7 +234,7 @@ function check_cp_cape()
 	if windower.ffxi.get_mob_by_target('t') then
 		target = windower.ffxi.get_mob_by_target('t')
 		
-		if target.name:match("Apex") or target.name:match("Locus") and target.hpp < 20 then
+		if (target.name:match("Apex") or target.name:match("Locus")) and target.hpp < 20 then
 			equip({back="Mecisto. Mantle"})
 			disable("back")
 		else
