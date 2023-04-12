@@ -12,8 +12,7 @@
 include('Modes.lua')
 RngMode = M('anarchy', 'doomsday', 'holliday') --anarchy, doomsday, Holliday
 WpnMode = M('Naegling', 'Tauret', 'Nusku Shield')
-DTMode = M{'normal', 'pdt'}
-AccMode = M{'normal', 'acc'}
+DTMode = M{'normal', 'hybrid'}
 MspeedMode = M{'idle','locked','off'}
 
 rLock = false
@@ -42,12 +41,17 @@ function get_sets()
         send_command('unbind ^f10')
 	end]]--
 	
+		-- set keybinds --
+	send_command('bind f9 gs c cycle dtmode')
+	send_command('bind f12 gs c lock rings')
+	ring_lock = false
+	
+	send_command('bind ^f9 gs c toggle movespeed') 	--ctrl+f9 gs toggle movespeed
+	send_command('bind ^f10 gs c lock movespeed') 	--ctrl+f10 lock movespeed
+	
 	send_command('bind ~f9 gs c cycle ranged')
 	send_command('bind ~f10 gs c cycle weapon')
 	send_command('bind ~f12 gs c toggle rnglock')
-	
-	send_command('bind f9 gs c toggle movespeed')
-	send_command('bind f10 gs c acc mode')
 	
 	function file_unload()
 		send_command('unbind ~f9')
@@ -87,6 +91,22 @@ function get_sets()
 		right_ring="Rajas Ring",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
+	
+	sets.melee.hybrid = {
+	    head={ name="Adhemar Bonnet +1", augments={'STR+12','DEX+12','Attack+20',}},
+		body="Chasseur's Frac +2",
+		hands="Malignance Gloves",
+		legs="Chas. Culottes +2",
+		feet={ name="Herculean Boots", augments={'Attack+26','Weapon skill damage +1%','DEX+15','Accuracy+8',}},
+		neck="Ocachi Gorget",
+		waist="Windbuffet Belt +1",
+		left_ear="Cessance Earring",
+		right_ear="Suppanomimi",
+		left_ring="Defending Ring",
+		right_ring="Rajas Ring",
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+	}
+	
 	sets.melee.acc  = {}
 	sets.melee.pdt = {}
 	
@@ -110,7 +130,7 @@ function get_sets()
 		--ammo="Orichalc. Bullet",
 		ammo="Eminent Bullet",
 		head="Chass. Tricorne +2",
-		body="Laksa. Frac +2",
+		body="Laksa. Frac +3",
 		hands={ name="Lanun Gants +1", augments={'Enhances "Fold" effect',}},
 		legs="Chas. Culottes +2",
 		feet="Meg. Jam. +1",
@@ -151,7 +171,7 @@ function get_sets()
 		head="Pixie Hairpin +1",
 		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
 		hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
-		legs={ name="Herculean Trousers", augments={'Mag. Acc.+20 "Mag.Atk.Bns."+20','Weapon skill damage +2%','INT+5','Mag. Acc.+2',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
 		neck={ name="Comm. Charm +1", augments={'Path: A',}},
 		--waist="Eschan Stone",
@@ -167,7 +187,7 @@ function get_sets()
 		head={ name="Herculean Helm", augments={'Mag. Acc.+16 "Mag.Atk.Bns."+16','Crit. hit damage +2%','INT+6','"Mag.Atk.Bns."+13',}},
 		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
 		hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
-		legs={ name="Herculean Trousers", augments={'Mag. Acc.+20 "Mag.Atk.Bns."+20','Weapon skill damage +2%','INT+5','Mag. Acc.+2',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
 		neck={ name="Comm. Charm +1", augments={'Path: A',}},
 		--neck="Sanctity Necklace",
@@ -181,9 +201,9 @@ function get_sets()
 	sets.WS['Last Stand'] ={
 		ammo="Voluspa Bullet",
 		head="Meghanada Visor +1",
-		body="Laksa. Frac +2",
+		body="Laksa. Frac +3",
 		hands="Meg. Gloves +2",
-		legs="Meg. Chausses +1",
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
@@ -196,10 +216,10 @@ function get_sets()
 	}
 	
 	sets.WS['Savage Blade'] ={
-		head="Meghanada Visor +1",
-		body="Laksa. Frac +2",
+		head="Meghanada Visor +2",
+		body="Laksa. Frac +3",
 		hands="Meg. Gloves +2",
-		legs="Meg. Chausses +1",
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
 		neck={ name="Comm. Charm +1", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
@@ -207,7 +227,7 @@ function get_sets()
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Ifrit Ring",
 		right_ring="Karieyh Ring",
-		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%',}},
+		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
 	sets.WS['Evisceration'] ={
@@ -229,7 +249,7 @@ function get_sets()
 		head={ name="Herculean Helm", augments={'Mag. Acc.+16 "Mag.Atk.Bns."+16','Crit. hit damage +2%','INT+6','"Mag.Atk.Bns."+13',}},
 		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
 		hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
-		legs={ name="Herculean Trousers", augments={'Mag. Acc.+20 "Mag.Atk.Bns."+20','Weapon skill damage +2%','INT+5','Mag. Acc.+2',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
 		neck={ name="Comm. Charm +1", augments={'Path: A',}},
 		waist="Eschan Stone",
@@ -349,13 +369,10 @@ end
 function idle()
 
 	if player.status=='Engaged' then
-		equip(sets.melee[AccMode.current])
-		if DTMode.current ~= 'normal' then
-		equip(sets.melee[DTMode.current]) end
+		equip(sets.melee[DTMode.current])
 	else
-		equip(sets.melee.normal, sets.idle.normal)
-		--equip(sets.idle[AccMode.current])
-		-- Movespeed
+		equip(sets.melee[DTMode.current], sets.idle.normal)
+		
 		if MspeedMode.current ~= 'off' then 
 			equip(sets.idle.movespeed) 
 		end
@@ -381,19 +398,20 @@ end]]--
 function self_command(command)
 	local commandArgs = command:lower()	
 	
-	if commandArgs == 'acc mode' then
-		AccMode:cycle()
-		send_command('@input /echo Acc mode set to '..tostring(AccMode.current))
-	end
-	
-	
+	-- command to set combat mode. acc, dt, hybrid mode etc --
+	if commandArgs == 'cycle dtmode' then
+		DTMode:cycle()
+		send_command('@input /echo DT mode: '..tostring(DTMode.current))		
 	
 	-- handle equiping and locking movement speed gear --
-	if commandArgs == 'toggle movespeed' then
+	-- handle equiping and locking movement speed gear --
+	elseif commandArgs == 'toggle movespeed' then
 		if MspeedMode.current ~= 'idle' then
 			MspeedMode:set('idle')
+			send_command('@input /echo movespeed set to idle')
 		elseif MspeedMode.current ~= 'off' then
 			MspeedMode:set('off')
+			send_command('@input /echo movespeed equip disabled')
 		end
 	end
 	-- cycle through ranged options --

@@ -15,6 +15,8 @@ DTMode = M{'normal', 'pdt'}
 AccMode = M{'normal', 'acc'}
 MspeedMode = M{'idle','locked','off'}
 
+Ebullience = false
+
 function get_sets()
 
 	--[[send_command('bind f9 gs c')
@@ -96,8 +98,8 @@ function get_sets()
 	}
 	
 	sets.midcast['Enhancing Magic'] = {
-		main="Bolelabunga",
-		sub="Sors Shield",
+		main={ name="Pedagogy Staff", augments={'Path: C',}},
+		sub="Enki Strap",
 		head="Arbatel Bonnet +2",
 		body={ name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +8',}},
 		hands="Arbatel Bracers +2",
@@ -174,7 +176,21 @@ function get_sets()
 	sets.JA['example'] = {}
 	
 	-- Weapon Skill sets --
-	sets.WS['example'] = {}
+	sets.WS['Myrkr'] = {
+		ammo="Ghastly Tathlum +1",
+		head="Pixie Hairpin +1",
+		body="Arbatel Gown +2",
+		hands={ name="Peda. Bracers +1", augments={'Enh. "Tranquility" and "Equanimity"',}},
+		legs="Helios Spats",
+		feet="Arbatel Loafers +2",
+		neck="Nodens Gorget",
+		waist="Qiqirn Sash",
+		left_ear="Etiolation Earring",
+		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		left_ring="Mephitas's Ring",
+		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		back="Pahtli Cape",
+	}
 	
 end
 
@@ -201,6 +217,10 @@ function midcast(spell)
 	if spellmap ~= null then
 		send_command('@input /echo spellmap = '..tostring(spellmap))
 	end
+	
+	if spell.name == "Ebullience" then
+		Ebullience = true
+	end
 	-- temp basic rules to be tweaked and added to over time...
 	if spell.name:match('Cure') or spell.name:match('Cura') then
 		equip(sets.midcast.Cure)
@@ -214,7 +234,8 @@ function midcast(spell)
 		equip(sets.midcast.helix) 
 	elseif spell.type == 'BlackMagic' then
 	
-		if buffactive['Ebullience'] then
+		--if buffactive['Ebullience'] then
+		if Ebullience then
 			--equip({head="Arbatel Bonnet +2"})
 			equip(sets.midcast['Ebullience'])
 			--send_command('@input /echo Ebullience gear equiped')
@@ -258,9 +279,11 @@ function status_change(new,old)
 	--send_command('@input /echo '..player.status)
 end
 
---[[function buff_change(buff, gain) 
-	
-end]]--
+function buff_change(buff, gain) 
+	if buff == 'Ebullience' and not gain then
+		Ebullience = false
+	end
+end
 
 --[[function sub_job_change(new,old)
 	if new ~= old then 
@@ -278,7 +301,7 @@ function check_cp_cape()
 	if windower.ffxi.get_mob_by_target('t') then
 		target = windower.ffxi.get_mob_by_target('t')
 		
-		if (target.name:match("Apex") or target.name:match("Locus")) // and target.hpp < 20 then
+		if (target.name:match("Apex") or target.name:match("Locus")) and target.hpp < 20 then
 			equip({back="Mecisto. Mantle"})
 			disable("back")
 		else
