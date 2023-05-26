@@ -57,7 +57,7 @@ function get_sets()
 	
 	
 	-- Precast --
-	sets.precast.FC = {
+	sets.precast.oldFC = {
 		ammo="Incantor Stone",
 		head="Agwu's Cap",
 		body={ name="Pedagogy Gown", augments={'Enhances "Enlightenment" effect',}},
@@ -68,6 +68,23 @@ function get_sets()
 		left_ear="Etiolation Earring",
 		right_ear="Loquac. Earring",
 		left_ring="Kishar Ring",
+		back="Fi Follet Cape +1",
+	}
+	
+	sets.precast.FC = {
+		main={ name="Pedagogy Staff", augments={'Path: C',}},
+		ammo="Incantor Stone",
+		head={ name="Psycloth Tiara", augments={'Mag. Acc.+20','"Fast Cast"+10','INT+7',}},
+		body={ name="Pedagogy Gown", augments={'Enhances "Enlightenment" effect',}},
+		hands="Acad. Bracers +2",
+		legs="Agwu's Slops",
+		feet={ name="Peda. Loafers +2", augments={'Enhances "Stormsurge" effect',}},
+		neck="Voltsurge Torque",
+		waist="Embla Sash",
+		left_ear="Etiolation Earring",
+		right_ear="Loquac. Earring",
+		left_ring="Kishar Ring",
+		right_ring="Prolix Ring",
 		back="Fi Follet Cape +1",
 	}
 

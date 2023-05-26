@@ -54,46 +54,23 @@ function get_sets()
 	
 	-- Idle & engaged sets --
 	sets.melee.normal = {
-		--ammo="Ginsen",
-		ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-		head="Ken. Jinpachi +1",
+		head="Mpaca's Cap",
 		body="Mpaca's Doublet",
-		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		--legs="Hiza. Hizayoroi +2",
-		legs="Bhikku Hose +3",
-		feet="Anch. Gaiters +3",
-		neck={ name="Mnk. Nodowa +1", augments={'Path: A',}},
+		hands="Karagoz Guanti +2",
+		legs="Mpaca's Hose",
+		feet="Mpaca's Boots",
+		neck="Shulmanu Collar",
 		waist="Moonbow Belt +1",
-		--left_ear="Cessance Earring",
-		--right_ear="Brutal Earring",
-		--right_ear="Mache Earring +1",
-		left_ear="Sherida Earring",
-		right_ear={name="Schere Earring", augments={'Path: A',}},
+		left_ear={ name="Schere Earring", augments={'Path: A',}},
+		right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}},
 		left_ring="Epona's Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Haste+10',}},		
 	}
 	
-	sets.melee.acc = set_combine(sets.melee.normal, {
-		ammo="Falcon Eye",
-		--body="Mummu Jacket +1",
-		--feet="Mummu Gamash. +1",
-		--right_ear="Odr Earring",
-		--left_ear="Mache Earring +1",
-		--left_ring="Mummu Ring",
-		--right_ring="Niqmaddu Ring",
-	})
+	sets.melee.acc = set_combine(sets.melee.normal, {})
 	
 	sets.melee.pdt = {
-		--ammo="Amar Cluster",
-		body="Mpaca's Doublet",
-		hands="Malignance Gloves",
-		legs="Bhikku Hose +3", 
-		--feet={ name="Herculean Boots", augments={'Attack+26','Weapon skill damage +1%','DEX+15','Accuracy+8',}},--
-		--neck="Loricate Torque +1",
-		--waist="Moonbow Belt +1",
-		--right_ear="Etiolation/ Earring",
-		--left_ring="Defending Ring",
 	}
 	
 	sets.idle.normal = set_combine(sets.melee.normal, { body="Hiza. Haramaki +2" })
@@ -101,41 +78,40 @@ function get_sets()
 	sets.idle.pdt = set_combine(sets.melee.pdt, { body="Hiza. Haramaki +2" })
 	
 	-- JobAbility sets --
-	sets.JA.Chakra = { body="Temple Cyclas", hands="Melee Gloves", }
-	
-	sets.JA.Focus = { head="Temple Crown" }
-	
-	sets.JA.Boost = { hands="Temple Gloves" }
-	
-	sets.JA.Dodge = { feet="Anch. Gaiters +3" }
-	
-	sets.JA.Impetus = { body="Bhikku Cyclas +2" }
-	
-	sets.JA.Mantra = {}
-	
-	sets.JA['Perfect Counter'] = sets.melee.pdt
-	
-	sets.JA['Footwork'] = { feet="Anch. Gaiters +3" }
+	sets.JA['Example'] = {}
 	
 	-- Weapon Skill sets --
 	sets.WS['Victory Smite'] = {
-		ammo="Knobkierrie",
-		head={ name="Adhemar Bonnet +1", augments={'STR+12','DEX+12','Attack+20',}},
+		head="Mpaca's Cap",
 		body="Mpaca's Doublet",
 		hands={ name="Ryuo Tekko +1", augments={'STR+12','DEX+12','Accuracy+20',}},
-		legs="Mpaca's Hose",
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		left_ear="Odr Earring",
-		right_ear={name="Schere Earring", augments={'Path: A',}},
+		left_ear={ name="Schere Earring", augments={'Path: A',}},
+		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Rufescent Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10',}},
+		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Haste+10',}},
+	}
+	
+	sets.WS['Stringing Pummel'] = {
+		head="Mpaca's Cap",
+		body="Mpaca's Doublet",
+		hands={ name="Ryuo Tekko +1", augments={'STR+12','DEX+12','Accuracy+20',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet="Mpaca's Boots",
+		neck="Fotia Gorget",
+		waist="Moonbow Belt +1",
+		left_ear={ name="Schere Earring", augments={'Path: A',}},
+		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		left_ring="Rufescent Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Haste+10',}},
 	}
 	
 	sets.WS['Shijin Spiral'] = {
-		ammo="Knobkierrie",
 		head={ name="Adhemar Bonnet", augments={'DEX+10','AGI+10','Accuracy+15',}},
 		body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
 		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
@@ -147,17 +123,16 @@ function get_sets()
 		right_ear="Odr Earring",
 		left_ring="Thundersoul Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		--back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 
 	}
 	
 	sets.WS['Tornado Kick'] = {
-		ammo="Knobkierrie",
 		head="Mpaca's Cap",
 		body="Hiza. Haramaki +2",
 		hands={ name="Ryuo Tekko +1", augments={'STR+12','DEX+12','Accuracy+20',}},
 		legs="Mpaca's Hose",
-		feet="Anch. Gaiters +3",
+		--feet="Anch. Gaiters +3",
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
 		--left_ear="Mache earring +1",
@@ -166,31 +141,28 @@ function get_sets()
 		right_ear={name="Schere Earring", augments={'Path: A',}},
 		left_ring="Rufescent Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10',}},
+		--back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10',}},
 	}
 	
 	sets.WS['Dragon Kick'] = sets.WS['Tornado Kick']
 	
 	
 	sets.WS['Howling Fist'] = {
-		ammo="Knobkierrie",
 		head="Mpaca's Cap",
-		body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
+		body="Mpaca's Doublet",
 		hands={ name="Ryuo Tekko +1", augments={'STR+12','DEX+12','Accuracy+20',}},
 		legs="Mpaca's Hose",
-		feet="Hiza. Sune-Ate +1",
+		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		--left_ear="Cessance Earring",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear={name="Schere Earring", augments={'Path: A',}},
+		left_ear={ name="Schere Earring", augments={'Path: A',}},
+		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Rufescent Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10',}},
+		back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Haste+10',}},
 	}
 
 	sets.WS['Raging Fists'] = {
-		ammo="Knobkierrie",
 		head="Mpaca's Cap",
 		body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
 		hands={ name="Ryuo Tekko +1", augments={'STR+12','DEX+12','Accuracy+20',}},
@@ -203,11 +175,10 @@ function get_sets()
 		right_ear={name="Schere Earring", augments={'Path: A',}},
 		left_ring="Rufescent Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10',}},
+		--back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10',}},
 	}
 	
 	sets.WS['Asuran Fists'] = {
-		ammo="Knobkierrie",
 		head="Ken. Jinpachi +1",
 		body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
 		hands={ name="Ryuo Tekko +1", augments={'STR+12','DEX+12','Accuracy+20',}},
@@ -219,41 +190,16 @@ function get_sets()
 		right_ear="Odr Earring",
 		left_ring="Rufescent Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10',}},
+		--back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10',}},
 
 	}
 
 end
--- this pretarget function can be deleted if you don't wat to use aliasses for JAs
-function pretarget(spell)
-	--if sub == war? 
-	if spell.name == 'Perfect Counter' and buffactive['Perfect Counter'] then 		
-		cancel_spell()
-		send_command('@input /ja \'Dodge\' <me>')
-	elseif spell.name == 'Aggressor' and buffactive['Aggressor'] then 		
-		cancel_spell()
-		send_command('@input /ja \'Berserk\' <me>')
-	elseif spell.name == 'Impetus' and buffactive['Impetus'] then 		
-		cancel_spell()
-		send_command('@input /ja \'Focus\' <me>')
-	end
-end
-
 
 function precast(spell)
 
 	if sets.JA[spell.name] then
 		equip(sets.JA[spell.name]) 
-		
-		if spell.name == 'Perfect Counter' then
-			DTMode:set('pdt')
-			--update_tpmode()
-		end
-		-- TODO rules combine JA gear with current TP set ???
-	elseif spell.name == 'Victory Smite' and buffactive['Impetus'] then
-		equip(
-			set_combine(sets.WS['Victory Smite'], sets.JA['Impetus'])
-			)
 	elseif sets.WS[spell.name] then
 		equip(sets.WS[spell.name])
 	end
@@ -266,47 +212,24 @@ function aftercast(spell)
 		send_command('@input /echo TP Return: ['..tostring(player.tp)..']')
 	end
 	idle()
-	-- ensure equip is maintained persistant buffs (buffactive is not returning true on initial JA use until next call!)
-	if spell.name == 'Impetus' then
-		equip(sets.JA['Impetus'])
-	elseif spell.name == 'Footwork' then
-		equip(sets.JA['Footwork'])
-	end
-	
 end
  
  -- Returns to TP or Idle set depending on if the player is engaged 
  function idle()
 
 	if player.status=='Engaged' then
-		equip(sets.melee[AccMode.current])
-		if DTMode.current ~= 'normal' then
-		equip(sets.melee[DTMode.current]) end
+		equip(sets.melee[DTMode.current])
 	else
-		equip(sets.idle[AccMode.current])
-		if DTMode.current ~= 'normal' then
-		equip(sets.melee[DTMode.current]) end
-		if MspeedMode.current ~= 'off' then 
-			equip({feet="Herald's Gaiters"}) 
+		equip(sets.idle[DTMode.current])
+		if MspeedMode.current ~= 'off' then  
+			equip({legs="Crimson Cuisses"}) 
 		end
 	end
-		
-	if buffactive['Impetus'] then
-		equip(sets.JA['Impetus'])
-	end
-	if buffactive['Footwork'] then
-		equip(sets.JA['Footwork'])
-	end
+	--check_cp_cape()
 end
  
 function status_change(new,old)	
 	idle()
-end
-
-function buff_change(buff, gain)
-	if (buff:lower() == 'impetus' or buff:lower()== 'Footwork') and not gain then
-		idle()
-	end		
 end
 
 function sub_job_change(new,old)
@@ -357,14 +280,8 @@ function self_command(command)
 		send_command('@input /echo Herald\'s Gaiters '..tostring(MspeedMode.current))
 		
 	-- handle equiping and locking experience and warp rings --
-	elseif command == 'warp' then
-		use_ring("warp ring")
 	elseif commandArgs == 'lock rings' then
 		toggle_ring_lock()
-	end
-	
-	if command == 'test' then
-		send_command('@input /echo Ring test = '..tostring(player.equipment.right_ring))
 	end
 	
 	idle()
@@ -372,11 +289,11 @@ function self_command(command)
 end
 
 function set_default_macro_book()
-	send_command('@input /macro book 1; wait .1; input /macro set 1')
+	send_command('@input /macro book 28; wait .1; input /macro set 1')
 end
 
 function set_lockstyle()
-	send_command('wait 1; input /lockstyleset 1')
+	send_command('wait 1; input /lockstyleset 101')
 end
 
 function toggle_ring_lock()
@@ -390,65 +307,3 @@ function toggle_ring_lock()
 		send_command('@input /echo rings disabled')
 	end
 end
-		
-function use_ring(ring)
-	equip({ring1=ring})
-	toggle_ring_lock()
-	send_command('wait 9.5; input /item "'..ring..'" <me>')
-	send_command('@input /echo Using '..ring)
-end	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---[[function update_tpmode()
-	if DTMode.current == 'pdt' then
-		TPMode:set('pdt')
-	else
-		local mode = AccMode.current
-		TPMode:set(mode)
-	end
-end]]--
-
-
-
-	--[[if #commandArgs:split(' ') >= 2 then
-		commandArgs = T(commandArgs:split(' '))
-		
-		if commandArgs[1] == 'mode' then
-			if commandArgs[2] == 'acc' then
-				AccMode:cycle()
-				send_command('@input /echo'..tostring(AccMode.current))
-			end
-			if commandArgs[2] == 'pdt' then
-				DTMode:cycle()
-			end
-			--update_tpmode()
-			idle() ]]--

@@ -1,6 +1,6 @@
  -- Initialisation function for this job file.
 
-	local jobs = T{ "BLU", "COR", "MNK", "NIN", "SCH", "THF" }
+	local jobs = T{ "BLU", "COR", "MNK", "NIN", "SCH", "THF", "SMN" }
 	
 	mysets = {}
 	

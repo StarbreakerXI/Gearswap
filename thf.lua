@@ -92,33 +92,74 @@ end
 
 function aftercast(spell)
 	idle()
+	-- Equip TH gear after spell or ability if TH is set to locked.
+	if THMode.current == 'locked' then
+		equip(sets.melee.treasurehunter)
+	end
+	-- option for kiting
+	if MspeedMode.current == 'locked' then
+		equip(sets.idle.movespeed) 
+	end
 end
 
 function idle()
 
 	if player.status=='Engaged' then
-		equip(sets.melee[AccMode.current])
-		if DTMode.current ~= 'normal' then
-			equip(sets.melee[DTMode.current]) 
-		end
-		
+		equip(sets.melee[DTMode.current])
 	else
-		equip(sets.idle[AccMode.current])
-		if DTMode.current ~= 'normal' then
-			equip(sets.melee[DTMode.current]) 
-		end
-		if THMode.current == 'idle' then 
+		equip(sets.idle[DTMode.current])
+
+		if THMode.current ~= 'off' then 
 			equip(sets.melee.treasurehunter)
-			--equip(sets.idle.movespeed)
 		end
-	end	
+		if MspeedMode.current ~= 'off' then 
+			equip(sets.idle.movespeed) 
+		end
+	end
 end
 
+--[[ 
+	if player.status=='Engaged' then
+		equip(sets.melee[DTMode.current])
+	else
+		equip(sets.idle[DTMode.current])
+		if MspeedMode.current ~= 'off' then  
+			equip({legs="Crimson Cuisses"}) 
+		end
+	end
+	--check_cp_cape()
+]]--
  
 function self_command(command)
 	local commandArgs = command:lower()	
+		
+	-- command to set combat mode for acc dt and hybrid modes --
+	if commandArgs == 'dt mode' then
+		DTMode:cycle()
+		send_command('@input /echo Acc mode '..tostring(DTMode.current))
+	elseif commandArgs == 'acc mode' then
+		AccMode:cycle()
+		send_command('@input /echo Acc mode '..tostring(AccMode.current))		
 	
 	-- handle equiping and locking movement speed gear --
+	elseif commandArgs == 'toggle movespeed' then
+		if MspeedMode.current ~= 'idle' then
+			MspeedMode:set('idle')
+			--send_command('@input /echo movespeed set to idle')
+		elseif MspeedMode.current ~= 'off' then
+			MspeedMode:set('off')
+			--send_command('@input /echo movespeed swap disabled')
+		end
+		send_command('@input /echo Fajin Boots '..tostring(MspeedMode.current))
+	
+	elseif commandArgs == 'lock movespeed' then
+		if MspeedMode.current ~= 'locked' then
+			MspeedMode:set('locked')
+		end	
+		send_command('@input /echo Fajin Boots '..tostring(MspeedMode.current))
+	end
+	
+	-- handle equiping and locking Treasure Hunter gear --
 	if commandArgs == 'toggle treasurehunter' then
 		if THMode.current ~= 'idle' then
 			THMode:set('idle')
@@ -136,20 +177,18 @@ function self_command(command)
 		send_command('@input /echo Treasure Hunter '..tostring(THMode.current))
 		
 	end
+	
+	idle()
+	
 end		
  
 function status_change(new,old)
 	idle()
-	--[[if old == 'Idle' and new == 'Engaged' then
+	if (old == 'Idle' and new == 'Engaged') and THMode.current ~= 'off' then
 		equip(sets.melee.treasurehunter)
-	end]]--
-	--send_command('@input /echo Status changed to '..new)
+	end
 	
 end
-
---[[function buff_change(buff, gain) 
-	
-end]]--
 
 function sub_job_change(new,old)
 	if new ~= old then 

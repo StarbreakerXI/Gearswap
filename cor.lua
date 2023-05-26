@@ -77,7 +77,7 @@ function get_sets()
 	sets.WS = {}
 	
 	-- Idle & engaged sets --
-	sets.melee.normal = {
+	 sets.melee.normal = {
 	    head={ name="Adhemar Bonnet", augments={'DEX+10','AGI+10','Accuracy+15',}},
 		body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
 		hands="Malignance Gloves",
@@ -175,7 +175,8 @@ function get_sets()
 		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
 		neck={ name="Comm. Charm +1", augments={'Path: A',}},
 		--waist="Eschan Stone",
-		waist='Hachirin-no-Obi',
+		--waist='Hachirin-no-Obi',
+		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Dingir Ring",
@@ -191,7 +192,8 @@ function get_sets()
 		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
 		neck={ name="Comm. Charm +1", augments={'Path: A',}},
 		--neck="Sanctity Necklace",
-		waist="Eschan Stone",
+		--waist="Eschan Stone",
+		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
 		right_ear="Hecate's Earring",
 		left_ring="Dingir Ring",
@@ -273,13 +275,17 @@ function get_sets()
 		sub='Gleti\'s knife',
 	}
 	sets.melee['Tauret'] = {
-		main="Lanun Knife",
+		main={ name="Lanun Knife", augments={'Path: A',}},
 		sub="Tauret",
 	}
 	sets.melee['Nusku Shield'] = {
-		main="Lanun Knife",
+		main={ name="Lanun Knife", augments={'Path: A',}},
 		sub="Nusku Shield",
 	}
+	sets.melee.corRoll = {
+		main={ name="Lanun Knife", augments={'Path: C',}},
+	}
+	
 	-- Ranged Weapon Sets --
 	sets.ranged.doomsday = { 
 		range={ name="Doomsday", augments={'"Mag.Atk.Bns."+20','Weapon skill damage +4%','AGI+21',}},
@@ -332,6 +338,7 @@ function precast(spell)
 		send_command('@input /echo Phantom roll used')
 		if not rLock then
 			equip(sets.ranged.corRoll)
+			equip(sets.melee.corRoll)
 		end
 	end
 end
@@ -353,6 +360,7 @@ function aftercast(spell)
 	-- Switch back to main ranged weapon/set after using Phantom Roll.
 	if spell.type == 'CorsairRoll' then
 		equip(sets.ranged[RngMode.current])
+		equip(sets.melee[WpnMode.Current])
 	else 
 		idle()
 	end

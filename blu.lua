@@ -63,7 +63,7 @@ function get_sets()
 		right_ear="Loquac. Earring",
 		left_ring="Kishar Ring",
 		right_ring="Prolix Ring",
-		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
+		back={ name="Fi Follet Cape +1", augments={'Path: A',}},
 	}
 	
 	-- Micast --
@@ -99,6 +99,24 @@ function get_sets()
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
 	}
 	
+	sets.midcast['White Wind'] = {
+		ammo="Falcon Eye",
+		head={ name="Luh. Keffiyeh +1", augments={'Enhances "Convergence" effect',}},
+		body="Assim. Jubbah +3",
+		hands="Malignance Gloves",
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet="Gleti's Boots",
+		neck="Bathy Choker +1",
+		waist="Eschan Stone",
+		left_ear="Odnowa Earring",
+		right_ear="Odnowa Earring +1",
+		left_ring="Gelatinous Ring +1",
+		--right_ring="Defending Ring",
+		right_ring="Meridian Ring",
+		back={ name="Fi Follet Cape +1", augments={'Path: A',}},
+		--back="Moonbeam Cape",
+	}
+	
 	
 	-- Idle & engaged sets --
 	sets.melee.normal = {
@@ -114,7 +132,7 @@ function get_sets()
 		right_ear="Suppanomimi",
 		left_ring="Epona's Ring",
 		right_ring="Defending Ring",
-		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+2','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
 	-- For hybrid set you can switch to Sakpata Sword if needed for approx 41% total dt.
@@ -143,7 +161,7 @@ function get_sets()
 		right_ear="Ishvara Earring",
 		left_ring="Rufescent Ring",
 		right_ring="Karieyh Ring",
-		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+2','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	sets.WS['Chant du Cygne'] = {
 		ammo={ name="Coiste Bodhar", augments={'Path: A',}},
@@ -158,7 +176,7 @@ function get_sets()
 		right_ear="Odr Earring",
 		left_ring="Epona's Ring",
 		right_ring="Thundersoul Ring",
-		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+2','Weapon skill damage +10%',}},
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 	}
 	
 end
@@ -196,6 +214,7 @@ function midcast(spell)
 		elseif Blu_Macc_Mdmg:contains(spellmap) then
 			-- equip set for magic based, macc, skill etc... to be expanded later.
 			equip(sets.midcast.BluMagical)
+			equip({waist="Orpheus's Sash"})  -- temp swap to be edited later
 		elseif spellmap == 'Physical' then
 			--equip physical sets
 		end
